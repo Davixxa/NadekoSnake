@@ -3,15 +3,10 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json([
-    {
-      id: 1,
-      username: "user1"
-    }, {
-      id: 2,
-      username: "user2"
-    }
-  ]);
+  res.json({
+    userID: 1,
+    username: "hello"
+  });
 });
 
 module.exports = router;
