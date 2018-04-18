@@ -20,25 +20,7 @@
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
   </head>
   <body>
-        <div class="ui top fixed menu">
-                <div class="item">
-                  <img src="/images/logo.png">
-                </div>
-                <a class="item">
-                    <i class="user icon"></i>
-                    Login
-                </a>
-                <a class="item">
-                    <i class="shop icon"></i>
-                    Kurv
-                </a>
-              </div>
-              <div class="ui bottom fixed menu">
-                <div class="item">
-                  <img src="/images/logo.png">
-                </div>
-                
-              </div>
+        
       <div id="app"></div>
   </body>
 </html>
