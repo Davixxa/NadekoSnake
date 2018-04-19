@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="ui top fixed menu">
+    <div class="ui top sticky menu">
         <div class="item">
           <img src="https://cdn.discordapp.com/attachments/311052549685903361/436267861737209866/inKomplett.png" width="55%">
       </div>
@@ -21,15 +21,11 @@
         </a>
       </div>
     </div>
-    <div class="ui bottom fixed menu">
-      <div class="item">
-        <img src="/images/logo.png">
-      </div>
-    </div>
-    <br />
     <router-view>
 
     </router-view>
+
+    <br />
   </div>
 
 </template>
