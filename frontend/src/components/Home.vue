@@ -1,8 +1,6 @@
 <template>
     <div id="server">
-        <div v-text="msg">
-            {{msg}}
-        </div>
+        
     </div>
 </template>
 
