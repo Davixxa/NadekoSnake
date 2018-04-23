@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import Home from './components/Home.vue'
 import Users from './components/Users.vue';
 import About from './components/About.vue';
+import Product from './components/Product.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -14,7 +15,8 @@ Vue.use(VueResource);
 const routes = [
   { path: '/', component: Home },
   { path: '/users', component: Users  },
-  { path: '/about', component: About }
+  { path: '/about', component: About },
+  { path: '/product', component: Product }
 ];
 
 const router = new VueRouter({ routes });
