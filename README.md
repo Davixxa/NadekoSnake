@@ -9,11 +9,11 @@ to run the apps
 however it is recommended to use nodemon
 
  $ npm install -g nodemon
- 
+
 and do
 
  $ npm nodemon
- 
+
 to run the api with nodemon, do not do it with the frontend.
 
 ------------------------------------------------------------
