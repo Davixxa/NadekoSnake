@@ -4,19 +4,23 @@ import App from './components/App.vue'
 import VueResource from 'vue-resource'
 
 //Components
-import Home from './components/Home.vue'
-import Users from './components/Users.vue';
-import About from './components/About.vue';
-import Product from './components/Product.vue';
+import Home from './components/main/Home.vue'
+import About from './components/main/About.vue';
+import Product from './components/main/Product.vue';
+import Login from './components/Login';
+
+//HowTos
+// Passing parameters through url
+  // https://router.vuejs.org/en/essentials/passing-props.html
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/users', component: Users  },
   { path: '/about', component: About },
-  { path: '/product', component: Product }
+  { path: '/product', component: Product },
+  { path: '/login', component: Login}
 ];
 
 const router = new VueRouter({ routes });
