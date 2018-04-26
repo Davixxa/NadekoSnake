@@ -12,6 +12,9 @@
                 <form class="ui large form">
                   <div class="ui stacked segment">
                     <div class="field">
+                      <div v-if="message != null" class="statusError">
+                        <h2>{{ message }}</h2>
+                      </div>
                       <div class="ui left icon input">
                         <i class="envelope outline icon"></i>
                         <input type="text" name="email" placeholder="E-mail address">
@@ -23,12 +26,12 @@
                         <input type="password" name="password" placeholder="Password">
                       </div>
                     </div>
-                    <div class="ui fluid large blue submit button">Login</div>
+                    <button v-on:click.prevent="login" class="ui fluid large blue submit button">Login</button>
                     </div>
                     <div class="ui error message"></div>
                 </form>
               <div class="ui message">
-                New to us? <a href="./#/signup">Sign Up</a>
+                <span>New to us? -</span> <a href="./#/signup">Sign Up</a>
               </div>
             </div>
           </div>
@@ -37,12 +40,15 @@
 </template>
 
 <script>
+
   export default {
     data() {
       return {
         id: 0,
         token: null,
         isAdmin: 0,
+        status: 0,
+        message: null,
         form: {
           email: null,
           password: null
@@ -55,7 +61,13 @@
           email: this.form.email,
           password: this.form.password
         }).then(function(data){
-          console.log(data);
+          if(this.code == 200){
+            this.$cookies.set('id', data.body.id)
+            .set('token', data.body.token)
+            .set('isAdmin', data.body.isAdmin);
+          }else{
+            this.message = data.body.message;
+          }
         });
       }
     }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './components/App.vue'
 import VueResource from 'vue-resource'
+import VueCookies from 'vue-cookies'
 
 //Components
 import Home from './components/main/Home.vue'
@@ -13,6 +14,7 @@ import Login from './components/Login';
 // Passing parameters through url
   // https://router.vuejs.org/en/essentials/passing-props.html
 
+Vue.use(VueCookies);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 

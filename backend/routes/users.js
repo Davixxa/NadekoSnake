@@ -16,41 +16,51 @@ function tokenGen() {
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.json({
-    userID: 1,
-    username: "hello"
+    message: "this leads nowhere"
   });
 });
 
 router.post('/login', function(req, res) {
-  var sql = "SELECT * FROM user WHERE username='" + req.body.username + "'";
+  console.log("received");
+  var sql = "SELECT * FROM user WHERE email='" + req.body.email + "'";
   db.conn.query(sql, (result, fields) => {
     //Check if result is found
-    if(result.length != 1){
+    if(result == null){
       res.json({
         status: 403,
-        message: "Wrong username"
+        message: "Something went wrong please check your credentials"
       });
+      return;
     };
 
     //Password check
     if(result.password != req.body.password){
       res.json({
         status: 403,
-        message: "Wrong password"
+        message: "Something went wrong please check your credentials"
       });
+      return;
     }
 
     var token = tokenGen();
     //Delete from token db
-    var sql = "DELETE * FROM token where userID=" + result.id;
-    db.conn.query(sql);
-    //Insert new token
-    var sql = "INSERT INTO token (userID, token) VALUES ('" + result.id + "','" + token + "')"
+    var sql = "SELECT * FROM token WHERE userID=" + result.id;
+    db.conn.query(sql, (result, fields) => {
+      if(result.length != 1){
+        var sql = "INSERT INTO token (userID, token) VALUES (" + result.id + ", '" + token  + "')";
+        db.conn.query(sql);
+      }else {
+        var sql = "UPDATE token SET token=" + token + " WHERE userID=" + result.id;
+        db.conn.query(sql);
+      }
+    });
 
     res.json({
       userID: result.id,
-      token: null,
-      isAdmin: result.isAdmin
+      token: token,
+      isAdmin: result.isAdmin,
+      status: 200,
+      message: "Data sent successfuly"
     });
   });
 });

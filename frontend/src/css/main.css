@@ -1,0 +1,9 @@
+.statusError {
+    background-color: red;
+    width: 100%;
+    height: 35x;
+}
+
+.statusError h2 {
+    color: white;
+}
