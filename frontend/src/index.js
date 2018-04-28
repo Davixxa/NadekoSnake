@@ -9,6 +9,7 @@ import Home from './components/main/Home.vue'
 import About from './components/main/About.vue';
 import Product from './components/main/Product.vue';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 //HowTos
 // Passing parameters through url
@@ -22,7 +23,8 @@ const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
   { path: '/product', component: Product },
-  { path: '/login', component: Login}
+  { path: '/login', component: Login },
+  { path: '/signup', component: Signup }
 ];
 
 const router = new VueRouter({ routes });

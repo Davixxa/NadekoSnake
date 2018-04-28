@@ -61,7 +61,7 @@
           email: this.form.email,
           password: this.form.password
         }).then(function(data){
-          if(this.code == 200){
+          if(data.code == 200){
             this.$cookies.set('id', data.body.id)
             .set('token', data.body.token)
             .set('isAdmin', data.body.isAdmin);
