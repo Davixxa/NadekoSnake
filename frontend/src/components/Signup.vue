@@ -17,30 +17,28 @@
                                 </div>
                                 <div class="ui left icon input">
                                     <i class="user icon"></i>
-                                    <input type="text" name="firstName" placeholder="First Name">
+                                    <input type="text" v-model="form.firstName" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="user icon"></i>
-                                    <input type="text" name="text" placeholder="Last Name">
+                                    <input type="text" v-model="form.lastName" placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="field">
-                                <div v-if="message != null" class="statusError">
-                                    <h2>{{ message }}</h2>
-                                </div>
                                 <div class="ui left icon input">
                                     <i class="envelope outline icon"></i>
-                                    <input type="text" name="email" placeholder="E-mail address">
+                                    <input type="text" v-model="form.email" placeholder="E-mail address">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password">
+                                    <input type="password" v-model="form.password" placeholder="Password">
                                 </div>
                             </div>
+                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="#"> terms of sale </a></span>
                             <button v-on:click.prevent="signUp" class="ui fluid large blue submit button">Sign Up</button>
                         </div>
                     </form>
@@ -58,7 +56,8 @@
                     firstName: null,
                     lastName: null,
                     email: null,
-                    password: null
+                    password: null,
+                    accept: null
                 },
                 code: 0,
                 message: null
@@ -66,16 +65,21 @@
         },
         methods: {
             signUp: function() {
-                this.$http.post('http://localhost:4000/users/login', {
+                if(this.form.accept == false){
+                    this.message = "Please accept the terms of sale";
+                    return;
+                };
+                this.$http.post('http://localhost:3000/users/signup', {
                     firstName: this.form.firstName,
                     lastName: this.form.lastName,
                     email: this.form.email,
-                    passowrd: this.form.data
+                    passowrd: this.form.password
                 }).then(function(data) {
-                    this.message = data.message;
-                    if(data.code != 200) {
-
+                    this.message = data.body.message;
+                    if(data.body.status != 200) {
+                        return;
                     }
+                    window.location('../');
                 });
             }
         }

@@ -17,13 +17,13 @@
                       </div>
                       <div class="ui left icon input">
                         <i class="envelope outline icon"></i>
-                        <input type="text" name="email" placeholder="E-mail address">
+                        <input type="text" v-model="form.email" placeholder="E-mail address">
                       </div>
                     </div>
                     <div class="field">
                       <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" v-model="form.password" placeholder="Password">
                       </div>
                     </div>
                     <button v-on:click.prevent="login" class="ui fluid large blue submit button">Login</button>
@@ -57,6 +57,7 @@
     },
     methods: {
       login: function() {
+        console.log(this.form);
         this.$http.post('http://localhost:3000/users/login',{
           email: this.form.email,
           password: this.form.password
@@ -68,6 +69,7 @@
           }else{
             this.message = data.body.message;
           }
+          console.log(data);
         });
       }
     }

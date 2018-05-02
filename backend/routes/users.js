@@ -20,12 +20,38 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/login', function(req, res) {
-  console.log("received");
+router.post('/signup', function(req, res) {
   var sql = "SELECT * FROM user WHERE email='" + req.body.email + "'";
   db.conn.query(sql, (result, fields) => {
+    if(fields.length == 0){
+      var sql = "INSERT INTO user (firstName, lastName, email, password) VALUES ('" + req.body.firstName + "', '" + req.body.lastName + "', '" + req.body.email + "', '" + req.body.password + "')";
+      db.conn.query(sql, (err, result) => {
+        if(err){
+          res.json({
+            status: 404,
+            message: "SQL related error, please contact a systemadministrator"
+          });
+          return;
+        };
+        res.json({
+          status: 200,
+          message: "Successfull registration"
+        });
+      });
+    }else {
+      res.json({
+        status: 40,
+        message: "email taken"
+      });
+    }
+  });
+});
+
+router.post('/login', function(req, res) {
+  var sql = "SELECT * FROM user WHERE email='" + req.body.email + "'";
+  db.conn.query(sql, (err, results, fields) => {
     //Check if result is found
-    if(result == null){
+    if(results == null){    
       res.json({
         status: 403,
         message: "Something went wrong please check your credentials"
@@ -34,7 +60,8 @@ router.post('/login', function(req, res) {
     };
 
     //Password check
-    if(result.password != req.body.password){
+    console.log(results + " " + req.body.password);
+    if(results.password != req.body.password){
       res.json({
         status: 403,
         message: "Something went wrong please check your credentials"
@@ -45,8 +72,8 @@ router.post('/login', function(req, res) {
     var token = tokenGen();
     //Delete from token db
     var sql = "SELECT * FROM token WHERE userID=" + result.id;
-    db.conn.query(sql, (result, fields) => {
-      if(result.length != 1){
+    db.conn.query(sql, (err, result, fields) => {
+      if(fields.length != 1){
         var sql = "INSERT INTO token (userID, token) VALUES (" + result.id + ", '" + token  + "')";
         db.conn.query(sql);
       }else {
