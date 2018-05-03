@@ -57,21 +57,20 @@
     },
     methods: {
       login: function() {
-        console.log(this.form);
         this.$http.post('http://localhost:3000/users/login',{
           email: this.form.email,
           password: this.form.password
         }).then(function(data){
-          if(data.status == 200){
+          if(data.body.code == 200){
             this.$session.start();
-            this.$session.set('userID', data.body.id);
+            this.$session.set('userID', data.body.userID);
             this.$session.set('token', data.body.token);
-            this.$session.set('userID', data.body.token);
+            this.$session.set('isAdmin', data.body.isAdmin);
+            location.reload();
+            this.$router.push('./');
           }else{
             this.message = data.body.message;
           }
-          console.log(this.$session.get('token'));
-          console.log(data);
         });
       }
     }

@@ -5,7 +5,7 @@ var router = express.Router();
 
 function tokenGen() {
   var token = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#¤%&/()=?`£$€{[]}+¨^~*'";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
   for (var i = 0; i < 100; i++)
     token += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -73,7 +73,7 @@ router.post('/login', function(req, res) {
 
     var token = tokenGen();
     //Delete from token db
-    var sql = "SELECT * FROM token WHERE userID=" + json[0].id;
+    var sql = "SELECT * FROM token WHERE userID=" + json[0].id + ";";
     db.conn.query(sql, (err, results, fields) => {
       if(results.length != 1){
         var sql = "INSERT INTO token (userID, token) VALUES (" + json[0].id + ", '" + token  + "')";
@@ -83,12 +83,11 @@ router.post('/login', function(req, res) {
         db.conn.query(sql);
       }
     });
-
     res.json({
       userID: json[0].id,
       token: token,
       isAdmin: json[0].isAdmin,
-      status: 200,
+      code: 200,
       message: "Data sent successfuly"
     });
   });

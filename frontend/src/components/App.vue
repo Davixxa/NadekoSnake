@@ -7,11 +7,18 @@
           </a>
       </div>
       <div class="right menu">
-        <a href="./#/login" class="item">
+        <a v-if="isLoggedin == false" href="./#/login" class="item">
           <center>
           <i class="user icon big">
           </i>
             <p style="font-size: 100%;">Login</p>
+          </center>
+        </a>
+        <a v-if="isLoggedin" v-on:click="signout" class="item">
+          <center>
+          <i class="user icon big">
+          </i>
+            <p style="font-size: 100%;">Sign Out</p>
           </center>
         </a>
         <a href="./#/kurv" class="item">
@@ -31,3 +38,30 @@
   </div>
 
 </template>
+
+<script>
+
+  export default {
+    data() {
+      return {
+        isLoggedin: false
+      }
+    },
+    mounted() {
+      this.$session.start();
+      //Session data gets stored into the cache
+      if(this.$session.get('token') != null){
+        this.isLoggedin = true;
+      }
+    },
+    methods: {
+      signout: function() {
+        this.$session.start();
+        this.$session.destroy();
+        location.reload();
+        this.$router.push('./');
+      }
+    }
+  }
+
+</script>
