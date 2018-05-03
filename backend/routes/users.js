@@ -5,7 +5,7 @@ var router = express.Router();
 
 function tokenGen() {
   var token = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#¤%&/()=?`£$€{[]}+¨^~*'";
 
   for (var i = 0; i < 100; i++)
     token += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -35,7 +35,7 @@ router.post('/signup', function(req, res) {
         };
         res.json({
           status: 200,
-          message: "Successfull registration"
+          message: "Successful registration"
         });
       });
     }else {

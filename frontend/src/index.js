@@ -24,7 +24,7 @@ Vue.use(VueSession);
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  { path: '/product', component: Product },
+  { path: '/product/:id', component: Product },
   { path: '/login', component: Login },
   { path: '/signup', component: Signup }
 ];
