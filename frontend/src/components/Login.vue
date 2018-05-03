@@ -62,13 +62,15 @@
           email: this.form.email,
           password: this.form.password
         }).then(function(data){
-          if(data.code == 200){
-            this.$cookies.set('id', data.body.id)
-            .set('token', data.body.token)
-            .set('isAdmin', data.body.isAdmin);
+          if(data.status == 200){
+            this.$session.start();
+            this.$session.set('userID', data.body.id);
+            this.$session.set('token', data.body.token);
+            this.$session.set('userID', data.body.token);
           }else{
             this.message = data.body.message;
           }
+          console.log(this.$session.get('token'));
           console.log(data);
         });
       }

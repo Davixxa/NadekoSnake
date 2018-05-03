@@ -7,7 +7,7 @@ function tokenGen() {
   var token = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < 5; i++)
+  for (var i = 0; i < 100; i++)
     token += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return token;
@@ -48,20 +48,22 @@ router.post('/signup', function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-  var sql = "SELECT * FROM user WHERE email='" + req.body.email + "'";
+  var sql = "SELECT * FROM user WHERE email= '" + req.body.email + "'";
   db.conn.query(sql, (err, results, fields) => {
     //Check if result is found
-    if(results == null){    
+    if(results.length == 0){    
       res.json({
         status: 403,
         message: "Something went wrong please check your credentials"
       });
       return;
     };
+    
+    var result = JSON.stringify(results);
+    var json = JSON.parse(result);
 
     //Password check
-    console.log(results + " " + req.body.password);
-    if(results.password != req.body.password){
+    if(json[0].password != req.body.password){
       res.json({
         status: 403,
         message: "Something went wrong please check your credentials"
@@ -71,21 +73,21 @@ router.post('/login', function(req, res) {
 
     var token = tokenGen();
     //Delete from token db
-    var sql = "SELECT * FROM token WHERE userID=" + result.id;
-    db.conn.query(sql, (err, result, fields) => {
-      if(fields.length != 1){
-        var sql = "INSERT INTO token (userID, token) VALUES (" + result.id + ", '" + token  + "')";
+    var sql = "SELECT * FROM token WHERE userID=" + json[0].id;
+    db.conn.query(sql, (err, results, fields) => {
+      if(results.length != 1){
+        var sql = "INSERT INTO token (userID, token) VALUES (" + json[0].id + ", '" + token  + "')";
         db.conn.query(sql);
       }else {
-        var sql = "UPDATE token SET token=" + token + " WHERE userID=" + result.id;
+        var sql = "UPDATE token SET token='" + token + "' WHERE userID=" + json[0].id;
         db.conn.query(sql);
       }
     });
 
     res.json({
-      userID: result.id,
+      userID: json[0].id,
       token: token,
-      isAdmin: result.isAdmin,
+      isAdmin: json[0].isAdmin,
       status: 200,
       message: "Data sent successfuly"
     });

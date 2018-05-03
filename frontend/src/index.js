@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import App from './components/App.vue'
 import VueResource from 'vue-resource'
 import VueCookies from 'vue-cookies'
+import VueSession from 'vue-session'
 
 //Components
 import Home from './components/main/Home.vue'
@@ -18,6 +19,7 @@ import Signup from './components/Signup';
 Vue.use(VueCookies);
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(VueSession);
 
 const routes = [
   { path: '/', component: Home },

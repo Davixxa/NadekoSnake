@@ -38,7 +38,7 @@
                                     <input type="password" v-model="form.password" placeholder="Password">
                                 </div>
                             </div>
-                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="#"> terms of sale </a></span>
+                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="./agreements/tos"> terms of sale </a></span>
                             <button v-on:click.prevent="signUp" class="ui fluid large blue submit button">Sign Up</button>
                         </div>
                     </form>
@@ -65,7 +65,7 @@
         },
         methods: {
             signUp: function() {
-                if(this.form.accept == false){
+                if(this.form.accept != true){
                     this.message = "Please accept the terms of sale";
                     return;
                 };
@@ -73,7 +73,7 @@
                     firstName: this.form.firstName,
                     lastName: this.form.lastName,
                     email: this.form.email,
-                    passowrd: this.form.password
+                    password: this.form.password
                 }).then(function(data) {
                     this.message = data.body.message;
                     if(data.body.status != 200) {
