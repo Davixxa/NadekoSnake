@@ -35,7 +35,7 @@ router.post('/signup', function(req, res) {
         };
         res.json({
           status: 200,
-          message: "Successfull registration"
+          message: "Successful registration"
         });
       });
     }else {
