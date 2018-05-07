@@ -16,6 +16,7 @@ function tokenGen() {
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.json({
+    code: 404,
     message: "this leads nowhere"
   });
 });
@@ -92,4 +93,53 @@ router.post('/login', function(req, res) {
     });
   });
 });
+
+router.post('/info', function(req, res) {
+  var sql = "SELECT * FROM user WHERE id=" + req.body.auth.userID;
+  db.conn.query(sql, (err, results, fields) => {
+    if(err){
+      res.json({
+        authed: false,
+        code: 404,
+        message: "SQL related error"
+      });
+      return;
+    }
+    var sql = "SELECT * FROM token WHERE userID=" + req.body.auth.userID;
+    db.conn.query(sql, (err, results, fields) => {
+      if(err) {
+        res.json({
+          authed: false,
+          code: 404,
+          message: "SQL related error"
+        });
+        return;
+      }
+      var string = JSON.stringify(results);
+      var json = JSON.parse(string);
+
+      if(json[0].token != req.body.auth.token){
+        res.json({
+          code: 403,
+          message: "Unauthorized"
+        });
+        return;
+      }
+    });
+
+    var string = JSON.stringify(results);
+    var json = JSON.parse(string);
+
+    res.json({
+      authed: true,
+      code: 200,
+      message: "Successful authorization",
+
+      firstName: json[0].firstName,
+      lastName: json[0].lastName
+    });
+
+  });
+})
+
 module.exports = router;

@@ -12,6 +12,9 @@ import Product from './components/main/Product.vue';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
+//Account compononts
+import accInfo from './components/account/info';
+
 //HowTos
 // Passing parameters through url
   // https://router.vuejs.org/en/essentials/passing-props.html
@@ -26,7 +29,10 @@ const routes = [
   { path: '/about', component: About },
   { path: '/product/:id', component: Product },
   { path: '/login', component: Login },
-  { path: '/signup', component: Signup }
+  { path: '/signup', component: Signup },
+
+  //Account paths
+  { path: '/a', component: accInfo }
 ];
 
 const router = new VueRouter({ routes });
