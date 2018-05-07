@@ -14,8 +14,10 @@ router.get('/', function(req, res) {
 
 router.post('/create', function(req, res) {
 
-    var sql = "SELECT * FROM user WHERE id=" + "" + req.body.auth.userID + ""; //Auth
-    db.conn.query(sql, function(results, fields) {
+    console.log(req.body.auth.userID);
+    var sql = "SELECT * FROM user WHERE id= " + req.body.auth.userID; //Auth
+    db.conn.query(sql, function(err, results, fields) {
+        console.log(results);
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 403,
@@ -24,7 +26,7 @@ router.post('/create', function(req, res) {
             return;
         }
         var sql = "SELECT * FROM token WHERE userID=" + req.body.auth.userID;
-        db.conn.query(sql, function(resultsToken, fieldsToken) { // Query Token
+        db.conn.query(sql, function(err, resultsToken, fieldsToken) { // Query Token
 
             if (results.length == 0) {
                 res.json({

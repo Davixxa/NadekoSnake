@@ -23,10 +23,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/signup', function(req, res) {
   var sql = "SELECT * FROM user WHERE email='" + req.body.email + "'";
-  db.conn.query(sql, (result, fields) => {
-    if(fields.length == 0){
+  db.conn.query(sql, (err, results, fields) => {
+    if(results.length == 0){
       var sql = "INSERT INTO user (firstName, lastName, email, password) VALUES ('" + req.body.firstName + "', '" + req.body.lastName + "', '" + req.body.email + "', '" + req.body.password + "')";
-      db.conn.query(sql, (err, result) => {
+      db.conn.query(sql, (err, results, fields) => {
         if(err){
           res.json({
             status: 404,
