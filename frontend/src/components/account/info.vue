@@ -1,5 +1,69 @@
 <template>
-    <h1> Your name: {{ info.firstName }} </h1>
+    <div class="accButtonContainer">
+        <h2> Velkommen {{ info.firstName }} {{ info.lastName }} </h2>
+        <br />
+        <br />
+        <div class="ui two column grid">
+            <a class="eight wide column accButton">
+                <div class="ui two column wid grid">
+                    <div class="row">
+                        <div class="three wide column">
+                            <i class="setting icon massive">
+                            </i>
+                        </div>
+                        <div class="five wide column">
+                            <h3> Bruger Indstillinger </h3>
+                            <p> Se og rediger dine bruger-oplysninger </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="eight wide column accButton">
+                <div class="ui two column wid grid">
+                    <div class="row">
+                        <div class="three wide column">
+                            <i class="mail icon massive">
+                            </i>
+                        </div>
+                        <div class="five wide column">
+                            <h3> Ordre </h3>
+                            <p> Se og rediger dine Ordre </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="ui two column grid">
+            <a class="eight wide column accButton">
+                <div class="ui two column wid grid">
+                    <div class="row">
+                        <div class="three wide column">
+                            <i class="payment icon massive">
+                            </i>
+                        </div>
+                        <div class="seven wide column">
+                            <h3> Kortoplysninger (Ikke udviklet) </h3>
+                            <p> Se og rediger dine kort-oplysninger </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="eight wide column accButton">
+                <div class="ui two column wid grid">
+                    <div class="row">
+                        <div class="three wide column">
+                            <i class="info icon massive">
+                            </i>
+                        </div>
+                        <div class="seven wide column">
+                            <h3> Avanceret (ikke udviklet) </h3>
+                            <p> Avanceret brugerindstillinger </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </template>
 
 <script>
