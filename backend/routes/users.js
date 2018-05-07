@@ -136,7 +136,8 @@ router.post('/info', function(req, res) {
       message: "Successful authorization",
 
       firstName: json[0].firstName,
-      lastName: json[0].lastName
+      lastName: json[0].lastName,
+      email: json[0].email
     });
 
   });

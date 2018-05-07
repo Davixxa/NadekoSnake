@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 
 //Account compononts
 import accInfo from './components/account/info';
+import accSettings from './components/account/settings';
 
 //HowTos
 // Passing parameters through url
@@ -32,7 +33,8 @@ const routes = [
   { path: '/signup', component: Signup },
 
   //Account paths
-  { path: '/a', component: accInfo }
+  { path: '/a', component: accInfo },
+  { path: '/a/settings', component: accSettings }
 ];
 
 const router = new VueRouter({ routes });

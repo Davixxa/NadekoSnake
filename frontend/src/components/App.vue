@@ -16,9 +16,16 @@
         </a>
         <a v-if="isLoggedin" v-on:click="signout" class="item">
           <center>
+          <i class="ban icon big">
+          </i>
+            <p style="font-size: 100%;">Log ud</p>
+          </center>
+        </a>
+        <a v-if="isLoggedin" href="./#/a" class="item">
+          <center>
           <i class="user icon big">
           </i>
-            <p style="font-size: 100%;">Sign Out</p>
+            <p style="font-size: 100%;">Min side</p>
           </center>
         </a>
         <a href="./#/kurv" class="item">

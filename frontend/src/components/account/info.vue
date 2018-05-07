@@ -4,7 +4,7 @@
         <br />
         <br />
         <div class="ui two column grid">
-            <a class="eight wide column accButton">
+            <a href="./#/a/settings" class="eight wide column accButton">
                 <div class="ui two column wid grid">
                     <div class="row">
                         <div class="three wide column">

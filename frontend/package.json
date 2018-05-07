@@ -3,7 +3,7 @@
   "name": "vuejs",
   "productName": "vuejs",
   "description": "My delightful Vue project",
-  "version": "0.0.0",
+  "version": "2.5.6",
   "license": "MIT",
   "scripts": {
     "dev": "poi",
@@ -13,7 +13,7 @@
   },
   "author": {
     "name": "ToppeRTheReal",
-    "email": "31285296+ToppeRTheReal@users.noreply.github.com"
+    "email": "topperhdoriginal@gmail.com"
   },
   "dependencies": {
     "normalize.css": "^7.0.0",
@@ -27,6 +27,6 @@
   "devDependencies": {
     "poi": "^9.0.0",
     "poi-preset-bundle-report": "^2.0.0",
-    "serve": "^6.1.0"
+    "serve": "^6.5.6"
   }
 }
