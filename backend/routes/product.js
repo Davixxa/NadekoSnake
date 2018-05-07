@@ -14,10 +14,8 @@ router.get('/', function(req, res) {
 
 router.post('/create', function(req, res) {
 
-    console.log(req.body.auth.userID);
     var sql = "SELECT * FROM user WHERE id= " + req.body.auth.userID; //Auth
     db.conn.query(sql, function(err, results, fields) {
-        console.log(results);
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 403,

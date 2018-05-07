@@ -1,5 +1,5 @@
 <template>
-
+    <h1> Your name: {{ info.firstName }} </h1>
 </template>
 
 <script>
@@ -21,10 +21,10 @@
                 auth: {
                     token: this.$session.get('token'),
                     userID: this.$session.get('userID'),
-                    isAdmin: this$session.get('isAdmin')
+                    isAdmin: this.$session.get('isAdmin')
                 }
             }).then(function(data) {
-                if(data.body.code == 200){
+                if(data.body.authed == true){
                     this.info.firstName = data.body.firstName;
                     this.info.lastName = data.body.lastName;
                 }else{
