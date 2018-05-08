@@ -30,7 +30,7 @@ router.post('/signup', function(req, res) {
         if(err){
           res.json({
             status: 404,
-            message: "SQL related error, please contact a systemadministrator"
+            message: "SQL related error, please contact a system administrator"
           });
           return;
         };

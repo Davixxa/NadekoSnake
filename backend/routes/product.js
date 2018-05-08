@@ -23,6 +23,8 @@ router.post('/create', function(req, res) {
             });
             return;
         }
+        var result = JSON.stringify(results)
+        var jsonUser = JSON.parse(result)
         var sql = "SELECT * FROM token WHERE userID=" + req.body.auth.userID;
         db.conn.query(sql, function(err, resultsToken, fieldsToken) { // Query Token
 
@@ -39,15 +41,50 @@ router.post('/create', function(req, res) {
             if (req.body.auth.token != json[0].token) { // Check om de passer sammen
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't match up"
+                    message: "Access Forbidden (For debugging purposes: Token doesn't match up)"
                 });
                 return;
             }
             
-            res.json({ // lav dummy besked indtil videre.
-                code: 200,
-                message: "Product created (in theory)"
-        });
+            if (jsonUser[0].isAdmin != 1) {
+                
+                res.json({
+                    code: 403,
+                    message: "Access Forbidden (For debugging purposes: Not admin)"
+                });
+                return;
+            }
+
+            console.log(req.body)
+
+            if (req.body.product == null) {
+                res.json({
+                    code: 404,
+                    message: "Product not given"
+                });
+                return;
+            }
+
+            var sql = "INSERT INTO product (productName, productDesc, productImg, productPrice) VALUES ('" + req.body.product.name + "', '" + req.body.product.description + "', '" + req.body.product.image + "', " + req.body.product.price + ")"
+            //"', '" + 
+            db.conn.query(sql, function(err, result, fields) {
+
+                if (err) {
+                    res.json({
+                        status: 404,
+                        message: "SQL related error, please contact a system administrator"
+                      });
+                      return;   
+                }
+
+                res.json({ // lav dummy besked indtil videre.
+                    code: 200,
+                    message: "Product created"
+                });
+
+            });
+
+
 
         });
         
