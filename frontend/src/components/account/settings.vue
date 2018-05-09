@@ -8,7 +8,7 @@
                 <h3> Efternavn: {{ info.lastName }} </h3>
             </div>
             <div class="two wide column">
-                <a>
+                <a href="./#/changeName">
                     <i class="edit icon huge">
                     </i>
                 </a>
@@ -21,7 +21,7 @@
                 <h3> email: {{ info.email }} </h3>
             </div>
             <div class="two wide column">
-                <a>
+                <a :href="link.emailChange">
                     <i class="edit icon huge">
                     </i>
                 </a>
@@ -38,6 +38,10 @@
                     firstName: null,
                     lastName: null,
                     email: null
+                },
+                link: {
+                    nameChange: null,
+                    emailChange: null
                 }
             }
         },
@@ -53,10 +57,10 @@
                     isAdmin: this.$session.get('isAdmin')
                 }
             }).then(function(data) {
-                if(data.body.authed == true){
+                if(data.body.authed){
                     this.info.firstName = data.body.firstName;
                     this.info.lastName = data.body.lastName;
-                    this.info.email = data.body.email
+                    this.info.email = data.body.email;
                 }else{
                     this.$router.push('./login');
                 }
