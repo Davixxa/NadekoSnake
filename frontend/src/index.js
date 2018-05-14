@@ -16,6 +16,7 @@ import Signup from './components/Signup';
 import accInfo from './components/account/info';
 import accSettings from './components/account/settings';
 import nameChange from './components/account/edit/nameChange';
+import emailChange from './components/account/edit/emailChange';
 
 //HowTos
 // Passing parameters through url
@@ -38,8 +39,8 @@ const routes = [
   { path: '/a/settings', component: accSettings },
 
   //Account settings paths
-  { path: '/changeName', component: nameChange }
-];
+  { path: '/a/settings/changeName', component: nameChange },
+  { path: '/a/settings/changeEmail', component: emailChange }];
 
 const router = new VueRouter({ routes });
 

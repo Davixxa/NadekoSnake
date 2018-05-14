@@ -162,8 +162,6 @@ router.post('/nameChange', function(req, res) {
     db.conn.query(sql, (err, resultsToken, fields) => {
       var resultToken = JSON.stringify(resultsToken);
       var jsonToken = JSON.parse(resultToken);
-      console.log(json[0]);
-      console.log(jsonToken[0]);
       if(json[0].id != jsonToken[0].userID){
         res.json({
           code: 403,
@@ -207,4 +205,53 @@ router.post('/nameChange', function(req, res) {
 
   });
 });
+
+router.post('/emailChange', function(req, res) {
+
+  var sql = "SELECT * FROM user WHERE id=" + req.body.auth.userID;
+  db.conn.query(sql, (err, results, fields) => {
+    if(err) {
+      res.json({
+        code: 404,
+        message: "SQL related error, please contact an systemadministrator"
+      });
+      return;
+    }
+    var result = JSON.stringify(results);
+    var json = JSON.parse(result);
+
+    //Token fetch
+    var sql = "SELECT * FROM token WHERE token='" + req.body.auth.token + "'";
+    db.conn.query(sql, (err, resultsToken, fields) => {
+      var resultToken = JSON.stringify(resultsToken);
+      var jsonToken = JSON.parse(resultToken);
+      if(json[0].id != jsonToken[0].userID){
+        res.json({
+          code: 403,
+          message: "Unauthorized, Access Denied"
+        });
+        return;
+      }
+    });
+    
+    //if auth success
+    var sql = "UPDATE user SET email='" + req.body.user.email + "'";
+    db.conn.query(sql, (err, results, fields) => {
+      if(err) {
+        res.json({
+          code: 404,
+          message: "SQL related error, please contact an system administrator"
+        });
+        return;
+      }
+
+      res.json({
+        code: 200,
+        message: "successful update"
+      });
+
+    });
+  });
+});
+
 module.exports = router;

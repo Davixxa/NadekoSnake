@@ -8,7 +8,7 @@
                 <h3> Efternavn: {{ info.lastName }} </h3>
             </div>
             <div class="two wide column">
-                <a href="./#/changeName">
+                <a href="./#/a/settings/changeName">
                     <i class="edit icon huge">
                     </i>
                 </a>
@@ -21,7 +21,7 @@
                 <h3> email: {{ info.email }} </h3>
             </div>
             <div class="two wide column">
-                <a :href="link.emailChange">
+                <a href="./#/a/settings/changeEmail">
                     <i class="edit icon huge">
                     </i>
                 </a>

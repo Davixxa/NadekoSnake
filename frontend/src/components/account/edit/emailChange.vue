@@ -17,18 +17,14 @@
                       <div v-if="message != null" class="statusError">
                         <h2>{{ message }}</h2>
                       </div>
-                      <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" v-model="form.firstName" placeholder="Fornavn">
-                      </div>
                     </div>
                     <div class="field">
                       <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" v-model="form.lastName" placeholder="Efternavn">
+                        <i class=" icon"></i>
+                        <input type="text" v-model="form.email" placeholder="Email">
                       </div>
                     </div>
-                    <button v-on:click.prevent="nameChange" class="ui fluid large blue submit button">Update</button>
+                    <button v-on:click.prevent="emailChange" class="ui fluid large blue submit button">Update</button>
                     </div>
                 </form>
             </div>
@@ -48,8 +44,7 @@
                     lastName: null
                 },
                 form: {
-                    firstName: null,
-                    lastName: null
+                    email: null
                 }
             }
         },
@@ -74,16 +69,15 @@
             });
         },
         methods: {
-            nameChange: function() {
-                this.$http.post('http://localhost:3000/users/nameChange', {
+            emailChange: function() {
+                this.$http.post('http://localhost:3000/users/emailChange', {
                     auth: {
                         userID: this.$session.get('userID'),
                         token: this.$session.get('token'),
                         isAdmin: this.$session.get('isAdmon')
                     },
                     user: {
-                        firstName: this.form.firstName,
-                        lastName: this.form.lastName
+                        email: this.form.email
                     }
                 }).then(function(data) {
                     this.message = data.body.message;
