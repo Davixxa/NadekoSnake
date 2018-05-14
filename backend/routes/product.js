@@ -5,11 +5,48 @@ var mysql = require('mysql');
 var router = express.Router();
 
 
-router.get('/', function(req, res) {
+router.get("/", function(req, res) {
+
     res.json({
         code: 1337,
         message: 'u think ur a leet h4xx0r rite?'
     });
+
+});
+
+router.post('/info', function(req, res) {
+
+    if (req.body.id == null || req.body.id == 0) {
+        res.json({
+            code: 1337,
+            message: 'u think ur a leet h4xx0r rite?'
+        });
+        return;
+    }
+
+    var sql = "SELECT * FROM product WHERE id= " + req.body.id;
+    db.conn.query(sql, function(err, results, fields) {
+        if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
+            res.json({
+                code: 404,
+                message: "Product doesn't exist"
+            });
+            return;
+        }
+        var result = JSON.stringify(results);
+        var json = JSON.parse(result);
+
+
+        res.json({
+            code: 200,
+            id: json[0].id,
+            productName: json[0].productName,
+            productDesc: json[0].productDesc,
+            productImg: json[0].productImg,
+            productPrice: json[0].productPrice
+        });
+
+        });
 });
 
 router.post('/create', function(req, res) {
@@ -23,8 +60,8 @@ router.post('/create', function(req, res) {
             });
             return;
         }
-        var result = JSON.stringify(results)
-        var jsonUser = JSON.parse(result)
+        var result = JSON.stringify(results);
+        var jsonUser = JSON.parse(result);
         var sql = "SELECT * FROM token WHERE userID=" + req.body.auth.userID;
         db.conn.query(sql, function(err, resultsToken, fieldsToken) { // Query Token
 
@@ -65,7 +102,7 @@ router.post('/create', function(req, res) {
                 return;
             }
 
-            var sql = "INSERT INTO product (productName, productDesc, productImg, productPrice) VALUES ('" + req.body.product.name + "', '" + req.body.product.description + "', '" + req.body.product.image + "', " + req.body.product.price + ")"
+            var sql = "INSERT INTO product (productName, productDesc, productImg, productPrice) VALUES ('" + req.body.product.name + "', '" + req.body.product.description + "', '" + req.body.product.image + "', " + req.body.product.price + ")";
             //"', '" + 
             db.conn.query(sql, function(err, result, fields) {
 

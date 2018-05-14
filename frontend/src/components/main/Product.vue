@@ -66,6 +66,10 @@
           productImg: "https://tlwiki.org/images/a/a6/ChaosHead_bg144_01_1_%E7%94%9F%E5%BE%92%E6%89%8B%E5%B8%B3%E3%81%9D%E3%81%AE%E7%9B%AE_a_new.jpg",
           productPrice: 1.048596
         }
+      },
+      mounted() {
+
+
       }
     }
   
