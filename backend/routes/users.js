@@ -143,4 +143,68 @@ router.post('/info', function(req, res) {
   });
 })
 
+router.post('/nameChange', function(req, res) {
+  // Auth start
+  var sql = "SELECT * FROM user WHERE id=" + req.body.auth.userID;
+  db.conn.query(sql, (err, results, fields) => {
+    if(err) {
+      res.json({
+        code: 404,
+        message: "SQL related error, please contact an systemadministrator"
+      });
+      return;
+    }
+    var result = JSON.stringify(results);
+    var json = JSON.parse(result);
+
+    //Token fetch
+    var sql = "SELECT * FROM token WHERE token='" + req.body.auth.token + "'";
+    db.conn.query(sql, (err, resultsToken, fields) => {
+      var resultToken = JSON.stringify(resultsToken);
+      var jsonToken = JSON.parse(resultToken);
+      console.log(json[0]);
+      console.log(jsonToken[0]);
+      if(json[0].id != jsonToken[0].userID){
+        res.json({
+          code: 403,
+          message: "Unauthorized, Access Denied"
+        });
+        return;
+      }
+    });
+    
+    //if auth success
+    if(req.body.user.firstName != null){
+      var sql = "UPDATE user SET firstName='" + req.body.user.firstName + "' WHERE id=" + req.body.auth.userID;
+      db.conn.query(sql, (err, results, fields) => {
+        if(err) {
+          res.json({
+            code: 404,
+            message: "SQL related error"
+          });
+          return;
+        }
+      });
+    }
+
+    if(req.body.user.lastName != null){
+      var sql = "UPDATE user SET lastName='" + req.body.user.lastName + "' WHERE id=" + req.body.auth.userID;
+      db.conn.query(sql, (err, results, fields) => {
+        if(err) {
+          res.json({
+            code: 404,
+            message: "SQL related error"
+          });
+          return;
+        }
+      });
+    }
+
+    res.json({
+      code: 200,
+      message: "Successful update"
+    });
+
+  });
+});
 module.exports = router;
