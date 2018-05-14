@@ -69,6 +69,21 @@
       },
       mounted() {
 
+          this.$http.post('http://localhost:3000/product/info', {
+            //jsonBody
+            id: this.$route.query.id
+        }).then(function(data) {
+            if (!data.body.code == 200) {
+                this.$router.push('../');
+            }
+            else {
+                this.id = data.body.id,
+                this.productName = data.body.productName;
+                this.productDesc = data.body.productDesc;
+                this.productImg = data.body.productImg;
+                this.productPrice = data.body.productPrice;
+            }
+        });
 
       }
     }
