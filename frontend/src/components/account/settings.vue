@@ -47,7 +47,7 @@
         },
         mounted() {
             if(this.$session.get('token') == null){
-                this.$router.push('./login');
+                this.$router.push('../login');
                 return;
             }
             this.$http.post('http://localhost:3000/users/info', {
@@ -62,7 +62,7 @@
                     this.info.lastName = data.body.lastName;
                     this.info.email = data.body.email;
                 }else{
-                    this.$router.push('./login');
+                    this.$router.push('../login');
                 }
             });
         },
