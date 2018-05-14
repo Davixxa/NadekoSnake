@@ -66,26 +66,26 @@
           productImg: "https://tlwiki.org/images/a/a6/ChaosHead_bg144_01_1_%E7%94%9F%E5%BE%92%E6%89%8B%E5%B8%B3%E3%81%9D%E3%81%AE%E7%9B%AE_a_new.jpg",
           productPrice: 1.048596
         }
-      },
-      mounted() {
+    },
+        mounted() {
+          console.log(this.$route.query.id);
+            this.$http.post('http://localhost:3000/product/info', {
+                //jsonBody
+                id: this.$route.query.id
+            }).then(function(data) {
+                if (!data.body.code == 200) {
+                    this.$router.push('../');
+                }
+                else {
+                    this.id = data.body.id,
+                    this.productName = data.body.productName;
+                    this.productDesc = data.body.productDesc;
+                    this.productImg = data.body.productImg;
+                    this.productPrice = data.body.productPrice;
+                }
+            });
 
-          this.$http.post('http://localhost:3000/product/info', {
-            //jsonBody
-            id: this.$route.query.id
-        }).then(function(data) {
-            if (!data.body.code == 200) {
-                this.$router.push('../');
-            }
-            else {
-                this.id = data.body.id,
-                this.productName = data.body.productName;
-                this.productDesc = data.body.productDesc;
-                this.productImg = data.body.productImg;
-                this.productPrice = data.body.productPrice;
-            }
-        });
-
-      }
+        }
     }
   
 </script>
