@@ -20,8 +20,13 @@ import emailChange from './components/account/edit/emailChange';
 
 //Agreements
 import tos from './components/tos';
+<<<<<<< HEAD
 // Superuser components
+=======
+>>>>>>> 3aa7ae773e9238f36a7001e0619657be26ddcb65
 
+// Superuser components
+import su from './components/admin/index';
 import createProduct from './components/admin/product/createProduct';
 
 //HowTos
@@ -52,6 +57,7 @@ const routes = [
   { path: '/a/settings/changeEmail', component: emailChange },
 
   // Superuser Paths
+  { path: '/su', component: su },
 
   // Superuser Product Paths
 
