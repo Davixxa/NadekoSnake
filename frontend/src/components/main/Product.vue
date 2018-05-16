@@ -9,7 +9,7 @@
                             <div v-if="isAdmin">
                                 <small>Product ID: {{id}}</small>
                                 <br>
-                                <small><a href="#">Edit</a> <a href="#">Delete</a></small>
+                                <small><a href="#">Edit</a> <a v-on:click.prevent="deletThis">Delete</a></small>
                             </div>
                         </div>
                         <div class="ui segment">
@@ -89,13 +89,14 @@
                     this.productImg = data.body.productImg;
                     this.productPrice = data.body.productPrice;
 
-                    
 
-                    this.$http.post("http://localhost:3000/admin/auth", {
-                        user: {
-                        userID: this.$session.get("userID"),
-                        token: this.$session.get("token"),
-                        isAdmin: this.$session.get("isAdmin")
+                }
+            });
+                this.$http.post("http://localhost:3000/admin/auth", {
+                        auth: {
+                            userID: this.$session.get("userID"),
+                            token: this.$session.get("token"),
+                            isAdmin: this.$session.get("isAdmin")
                         }
                     }).then(function(data) {
                         console.log(data)
@@ -108,8 +109,34 @@
                         console.log(this.isAdmin);
                     });
 
-                }
-            });
+        }, methods: {
+
+            deletThis: function() {
+                
+                this.$http.post('http://localhost:3000/product/delete', {
+
+                    auth: {
+                        token: this.$session.get("token"),
+                        userID: this.$session.get("userID")
+
+                    },
+                    product: {
+                        name: this.form.name,
+                        description: this.form.description,
+                        image: this.form.image,
+                        price: this.form.price 
+
+                    }
+
+                }).then(function(data) {
+                    this.message = data.body.message;
+                    if(data.body.status != 200) {
+                        return;
+                    }
+                    window.location('../');
+                });
+            }
+
 
         }
     }

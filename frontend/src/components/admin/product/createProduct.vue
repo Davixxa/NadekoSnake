@@ -70,7 +70,7 @@
 
             this.$http.post("http://localhost:3000/admin/auth", {
 
-                user: {
+                auth: {
                     userID: this.$session.get("userID"),
                     token: this.$session.get("token"),
                     isAdmin: this.$session.get("isAdmin")
