@@ -5,11 +5,15 @@
             <div class="twelve wide column">
                     <div class="ui segments">
                         <div class="ui center aligned segment">
+                                <div class="statusError" v-if="message != null">
+                                    <h2> {{ message }} </h2>
+                                </div>
                             <h1>{{ productName }}</h1>
                             <div v-if="isAdmin">
                                 <small>Product ID: {{id}}</small>
                                 <br>
                                 <small><a href="#">Edit</a> <a v-on:click.prevent="deletThis">Delete</a></small>
+
                             </div>
                         </div>
                         <div class="ui segment">
@@ -70,7 +74,8 @@
           ",
           productImg: "https://tlwiki.org/images/a/a6/ChaosHead_bg144_01_1_%E7%94%9F%E5%BE%92%E6%89%8B%E5%B8%B3%E3%81%9D%E3%81%AE%E7%9B%AE_a_new.jpg",
           productPrice: 1.048596,
-          isAdmin: false
+          isAdmin: false,
+          message: null
         }
     },
         mounted() {
@@ -92,22 +97,22 @@
 
                 }
             });
-                this.$http.post("http://localhost:3000/admin/auth", {
-                        auth: {
-                            userID: this.$session.get("userID"),
-                            token: this.$session.get("token"),
-                            isAdmin: this.$session.get("isAdmin")
-                        }
-                    }).then(function(data) {
-                        console.log(data)
-                        if (data.body.authed) {
+            this.$http.post("http://localhost:3000/admin/auth", {
+                auth: {
+                    userID: this.$session.get("userID"),
+                    token: this.$session.get("token"),
+                    isAdmin: this.$session.get("isAdmin")
+                    }
+            }).then(function(data) {
+                //console.log(data)
+                if (data.body.authed) {
 
-                            this.isAdmin = true;
+                    this.isAdmin = true;
 
-                        }
+                }
 
-                        console.log(this.isAdmin);
-                    });
+                console.log(this.isAdmin);
+            });
 
         }, methods: {
 
@@ -120,20 +125,14 @@
                         userID: this.$session.get("userID")
 
                     },
-                    product: {
-                        name: this.form.name,
-                        description: this.form.description,
-                        image: this.form.image,
-                        price: this.form.price 
-
-                    }
+                    productID: this.id
 
                 }).then(function(data) {
                     this.message = data.body.message;
                     if(data.body.status != 200) {
                         return;
                     }
-                    window.location('../');
+                    window.location('/#/');
                 });
             }
 

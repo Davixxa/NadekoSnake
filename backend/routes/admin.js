@@ -6,6 +6,17 @@ var router = express.Router();
 // Auth admin
 router.post('/auth', (req, res) => {
     console.log(req);
+    console.log(req.body);
+
+    if(req.body.auth.userID == null || req.body.auth.token == null) {
+        res.json({
+            code: 403,
+            message: "You're not even logged in",
+            authed: false
+        });
+        return;
+    }
+
     var sql = "SELECT * FROM user WHERE id=" + req.body.auth.userID;
     db.conn.query(sql, (err, resultsUser, fields) => {
         if(err) {

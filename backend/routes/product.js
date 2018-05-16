@@ -173,7 +173,7 @@ router.post('/delete', function(req, res) {
                 return;
             }
 
-            console.log(req.body)
+            //console.log(req.body)
 
             if (req.body.productID == null) {
                 res.json({

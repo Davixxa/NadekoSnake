@@ -77,9 +77,10 @@
                 }
 
             }).then(function(data) {
-                if (!data.authed) {
-
-                    this.$router.push("/#/");
+                
+                if (data.authed == false) {
+                    console.log("auth false");
+                    this.$router.push("/");
 
                 }
             });
