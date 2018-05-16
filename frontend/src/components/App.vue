@@ -21,6 +21,13 @@
             <p style="font-size: 100%;">Log ud</p>
           </center>
         </a>
+        <a v-if="this.$session.get('isAdmin') == 1" href="./#/su" class="item">
+          <center>
+          <i class="lock icon big">
+          </i>
+            <p style="font-size: 100%;">Admin</p>
+          </center>
+        </a>
         <a v-if="isLoggedin" href="./#/a" class="item">
           <center>
           <i class="user icon big">
