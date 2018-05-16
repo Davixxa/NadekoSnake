@@ -38,7 +38,7 @@
                                     <input type="password" v-model="form.password" placeholder="Password">
                                 </div>
                             </div>
-                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="./agreements/tos"> terms of sale </a></span>
+                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="../#/agreements/tos"> terms of sale </a></span>
                             <button v-on:click.prevent="signUp" class="ui fluid large blue submit button">Sign Up</button>
                         </div>
                     </form>

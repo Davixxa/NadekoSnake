@@ -18,6 +18,9 @@ import accSettings from './components/account/settings';
 import nameChange from './components/account/edit/nameChange';
 import emailChange from './components/account/edit/emailChange';
 
+//Agreements
+import tos from './components/tos';
+
 //HowTos
 // Passing parameters through url
   // https://router.vuejs.org/en/essentials/passing-props.html
@@ -33,6 +36,9 @@ const routes = [
   { path: '/product/', component: Product },
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
+
+  //Agreement paths
+  { path: '/agreements/tos', component: tos },
 
   //Account paths
   { path: '/a', component: accInfo },
