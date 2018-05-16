@@ -92,8 +92,6 @@ router.post('/create', function(req, res) {
                 return;
             }
 
-            console.log(req.body)
-
             if (req.body.product == null) {
                 res.json({
                     code: 404,
@@ -101,6 +99,8 @@ router.post('/create', function(req, res) {
                 });
                 return;
             }
+
+            // Hvis autorisering er godkendt
 
             var sql = "INSERT INTO product (productName, productDesc, productImg, productPrice) VALUES ('" + req.body.product.name + "', '" + req.body.product.description + "', '" + req.body.product.image + "', " + req.body.product.price + ")";
             //"', '" + 
