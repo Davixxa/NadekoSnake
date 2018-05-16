@@ -67,18 +67,22 @@
             }
         },
         mounted() {
-                if (!this.$session.get("token")) {
-                    this.$router.push("../../login");
-                    return;
+
+            this.$http.post("http://localhost:3000/admin/auth", {
+
+                user: {
+                    userID: this.$session.get("userID"),
+                    token: this.$session.get("token"),
+                    isAdmin: this.$session.get("isAdmin")
                 }
 
-                if (!this.$session.get("isAdmin") || this.$session.get("isAdmin") == 0) {
+            }).then(function(data) {
+                if (!data.authed) {
+
                     this.$router.push("/#/");
-                    return;
+
                 }
-
-
-
+            });
                 
         },
         methods: {

@@ -18,14 +18,11 @@ import accSettings from './components/account/settings';
 import nameChange from './components/account/edit/nameChange';
 import emailChange from './components/account/edit/emailChange';
 
-<<<<<<< HEAD
 //Agreements
 import tos from './components/tos';
-=======
 // Superuser components
 
 import createProduct from './components/admin/product/createProduct';
->>>>>>> 54dc5aa15db8709bf87519ec33bf21a52eb6f43a
 
 //HowTos
 // Passing parameters through url

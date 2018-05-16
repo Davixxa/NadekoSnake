@@ -130,4 +130,84 @@ router.post('/create', function(req, res) {
 });
 
 
+router.post('/delete', function(req, res) {
+
+    var sql = "SELECT * FROM user WHERE id= " + req.body.auth.userID; //Auth
+    db.conn.query(sql, function(err, results, fields) {
+        if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
+            res.json({
+                code: 403,
+                message: "Access Forbidden (For debugging purposes: User doesn't exist)"
+            });
+            return;
+        }
+        var result = JSON.stringify(results);
+        var jsonUser = JSON.parse(result);
+        var sql = "SELECT * FROM token WHERE userID=" + req.body.auth.userID;
+        db.conn.query(sql, function(err, resultsToken, fieldsToken) { // Query Token
+
+            if (results.length == 0) {
+                res.json({
+                    code: 403,
+                    message: "Access Forbidden (For debugging purposes: Token doesn't exist)"
+                });
+                return;
+            }
+            
+            var result = JSON.stringify(resultsToken);
+            var json = JSON.parse(result);
+            if (req.body.auth.token != json[0].token) { // Check om de passer sammen
+                res.json({
+                    code: 403,
+                    message: "Access Forbidden (For debugging purposes: Token doesn't match up)"
+                });
+                return;
+            }
+            
+            if (jsonUser[0].isAdmin != 1) {
+                
+                res.json({
+                    code: 403,
+                    message: "Access Forbidden (For debugging purposes: Not admin)"
+                });
+                return;
+            }
+
+            console.log(req.body)
+
+            if (req.body.productID == null) {
+                res.json({
+                    code: 404,
+                    message: "Product ID not given"
+                });
+                return;
+            }
+
+            var sql = "DELETE FROM product WHERE id=" + req.body.productID;
+            //"', '" + 
+            db.conn.query(sql, function(err, result, fields) {
+
+                if (err) {
+                    res.json({
+                        status: 404,
+                        message: "SQL related error, please contact a system administrator"
+                      });
+                      return;   
+                }
+
+                res.json({ // lav dummy besked indtil videre.
+                    code: 200,
+                    message: "Product removed"
+                });
+
+            });
+
+
+
+        });
+        
+    });
+
+});
+
 module.exports = router;
