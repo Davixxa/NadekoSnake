@@ -267,6 +267,17 @@ router.post('/edit', function(req, res) {
                     code: 404,
                     message: "Product ID not given"
                 });
+                return;
+
+            }
+
+            if (req.body.product.name == null || req.body.product.description == null || req.body.product.image == null || req.body.product.price == null) {
+
+                res.json({
+                    code: 404,
+                    message: "Please fill out all fields."
+                });
+                return;
 
             }
 

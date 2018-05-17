@@ -12,7 +12,7 @@
                             <div v-if="isAdmin">
                                 <small>Product ID: {{id}}</small>
                                 <br>
-                                <small><a href="#">Edit</a> <a v-on:click.prevent="deletThis">Delete</a></small>
+                                <small><a v-bind:href="'/#/su/product/editProduct/?id=' + id">Edit</a> <a v-on:click.prevent="deletThis">Delete</a></small>
 
                             </div>
                         </div>

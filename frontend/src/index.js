@@ -25,6 +25,7 @@ import tos from './components/tos';
 // Superuser components
 import su from './components/admin/index';
 import createProduct from './components/admin/product/createProduct';
+import editProduct from './components/admin/product/editProduct';
 
 //HowTos
 // Passing parameters through url
@@ -58,7 +59,8 @@ const routes = [
 
   // Superuser Product Paths
 
-  { path: '/su/product/createProduct', component: createProduct }
+  { path: '/su/product/createProduct', component: createProduct },
+  { path: '/su/product/editProduct', component: editProduct}
 
 
 ];
