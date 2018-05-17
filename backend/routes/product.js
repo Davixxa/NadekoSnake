@@ -9,7 +9,7 @@ router.get("/", function(req, res) {
 
     res.json({
         code: 1337,
-        message: 'u think ur a leet h4xx0r rite?'
+        message: 'lol du tror du er en elite haxx0r?'
     });
 
 });
@@ -19,7 +19,7 @@ router.post('/info', function(req, res) {
     if (req.body.id == null || req.body.id == 0) {
         res.json({
             code: 1337,
-            message: 'u think ur a leet h4xx0r rite?'
+            message: 'lol du tror du er en elite haxx0r?'
         });
         return;
     }
@@ -29,7 +29,7 @@ router.post('/info', function(req, res) {
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 404,
-                message: "Product doesn't exist"
+                message: "Produkt eksisterer ikke"
             });
             return;
         }
@@ -56,7 +56,7 @@ router.post('/create', function(req, res) {
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 403,
-                message: "Access Forbidden (For debugging purposes: User doesn't exist)"
+                message: "Adgang forbudt (Til debugging: Bruger eksisterer ikke)"
             });
             return;
         }
@@ -68,7 +68,7 @@ router.post('/create', function(req, res) {
             if (results.length == 0) {
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't exist)"
+                    message: "Adgang forbudt (Til debugging: Token eksisterer ikke)"
                 });
                 return;
             }
@@ -78,7 +78,7 @@ router.post('/create', function(req, res) {
             if (req.body.auth.token != json[0].token) { // Check om de passer sammen
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't match up)"
+                    message: "Adgang forbudt (Til debugging: Token er ikke ens)"
                 });
                 return;
             }
@@ -87,7 +87,7 @@ router.post('/create', function(req, res) {
                 
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Not admin)"
+                    message: "Adgang forbudt (Til debugging: Bruger er ikke admin)"
                 });
                 return;
             }
@@ -95,7 +95,7 @@ router.post('/create', function(req, res) {
             if (req.body.product == null) {
                 res.json({
                     code: 404,
-                    message: "Product not given"
+                    message: "Produkt ikke udfyldt"
                 });
                 return;
             }
@@ -109,14 +109,14 @@ router.post('/create', function(req, res) {
                 if (err) {
                     res.json({
                         status: 404,
-                        message: "SQL related error, please contact a system administrator"
+                        message: "SQL relateret fejl, kontakt en systemadministrator"
                       });
                       return;   
                 }
 
                 res.json({ // lav dummy besked indtil videre.
                     code: 200,
-                    message: "Product created"
+                    message: "Produkt oprettet"
                 });
 
             });
@@ -137,7 +137,7 @@ router.post('/delete', function(req, res) {
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 403,
-                message: "Access Forbidden (For debugging purposes: User doesn't exist)"
+                message: "Adgang forbudt (Til debugging: Bruger eksisterer ikke)"
             });
             return;
         }
@@ -149,7 +149,7 @@ router.post('/delete', function(req, res) {
             if (results.length == 0) {
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't exist)"
+                    message: "Adgang forbudt (Til debugging: Token eksisterer ikke)"
                 });
                 return;
             }
@@ -159,7 +159,7 @@ router.post('/delete', function(req, res) {
             if (req.body.auth.token != json[0].token) { // Check om de passer sammen
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't match up)"
+                    message: "Adgang forbudt (Til debugging: Token er ikke ens)"
                 });
                 return;
             }
@@ -168,7 +168,7 @@ router.post('/delete', function(req, res) {
                 
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Not admin)"
+                    message: "Adgang forbudt (Til debugging: Bruger er ikke admin)"
                 });
                 return;
             }
@@ -190,7 +190,7 @@ router.post('/delete', function(req, res) {
                 if (err) {
                     res.json({
                         status: 404,
-                        message: "SQL related error, please contact a system administrator"
+                        message: "SQL relateret fejl, kontakt venligst en system administrator"
                       });
                       return;   
                 }
@@ -217,7 +217,7 @@ router.post('/edit', function(req, res) {
         if (results == null || results.length == 0) { // Check om resultaterne er null eller har længde på 0. Her er den null på trods af brugerens eksistens.
             res.json({
                 code: 403,
-                message: "Access Forbidden (For debugging purposes: User doesn't exist)"
+                message: "Adgang forbudt (Til debugging: Bruger eksisterer ikke)"
             });
             return;
         }
@@ -229,7 +229,7 @@ router.post('/edit', function(req, res) {
             if (results.length == 0) {
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't exist)"
+                    message: "Adgang forbudt (Til debugging: Token eksisterer ikke)"
                 });
                 return;
             }
@@ -239,7 +239,7 @@ router.post('/edit', function(req, res) {
             if (req.body.auth.token != json[0].token) { // Check om de passer sammen
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Token doesn't match up)"
+                    message: "Adgang forbudt (Til debugging: Token er ikke ens)"
                 });
                 return;
             }
@@ -248,7 +248,7 @@ router.post('/edit', function(req, res) {
                 
                 res.json({
                     code: 403,
-                    message: "Access Forbidden (For debugging purposes: Not admin)"
+                    message: "Adgang forbudt (Til debugging: Bruger er ikke admin)"
                 });
                 return;
             }
@@ -256,7 +256,7 @@ router.post('/edit', function(req, res) {
             if (req.body.product == null) {
                 res.json({
                     code: 404,
-                    message: "Product not given"
+                    message: "Produkt er ikke udfyldt"
                 });
                 return;
             }
@@ -265,7 +265,7 @@ router.post('/edit', function(req, res) {
 
                 res.json({
                     code: 404,
-                    message: "Product ID not given"
+                    message: "Product ID er ikke udfyldt"
                 });
                 return;
 
@@ -275,7 +275,7 @@ router.post('/edit', function(req, res) {
 
                 res.json({
                     code: 404,
-                    message: "Please fill out all fields."
+                    message: "Udfyld alle felter."
                 });
                 return;
 
@@ -290,14 +290,14 @@ router.post('/edit', function(req, res) {
                 if (err) {
                     res.json({
                         status: 404,
-                        message: "SQL related error, please contact a system administrator"
+                        message: "SQL relateret fejl, kontakt venligst en system administrator"
                       });
                       return;   
                 }
 
                 res.json({ // lav dummy besked indtil videre.
                     code: 200,
-                    message: "Product updated"
+                    message: "Produkt opdateret"
                 });
 
             });

@@ -16,30 +16,30 @@
 
                                     <div class="ui left icon input">
                                         <i class="file icon"></i>
-                                        <input type="text" v-model="form.name" placeholder="Name"/>
+                                        <input type="text" v-model="form.name" placeholder="Navn"/>
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <div class="ui left icon input">
-                                        <textarea type="text" v-model="form.description" placeholder="Description" />
+                                        <textarea type="text" v-model="form.description" placeholder="Beskrivelse" />
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <div class="ui left icon input">
                                         <i class="shekel sign icon"></i> <!-- Eventuelt udskift med "money bill alternate icon". Jeg har brugt shekel som joke. -->
-                                        <input type="number" v-model="form.price" placeholder="Price" />
+                                        <input type="number" v-model="form.price" placeholder="Pris" />
                                     </div>
                                 </div>
 
                                 <div class="field">
                                     <div class="ui left icon input">
                                         <i class="image icon"></i>
-                                        <input type="text" v-model="form.image" placeholder="Image" />
+                                        <input type="text" v-model="form.image" placeholder="Billede" />
                                     </div>
                                 </div>
-                            <button v-on:click.prevent="create" class="ui fluid large blue submit button">Update Product</button>
+                            <button v-on:click.prevent="create" class="ui fluid large blue submit button">Rediger Produkt</button>
                             
                           </div>
                       </div>
@@ -114,22 +114,22 @@
         methods: {
             create: function() {
                 if(!this.form.name){
-                    this.message = "Please enter a name";
+                    this.message = "Skriv venligst et navn";
                     return;
                 };
 
                 if(!this.form.description) {
-                    this.message ="Please enter a description";
+                    this.message ="Skriv venligst en beskrivelse";
                     return;
                 }
 
                 if(!this.form.price) {
-                    this.message = "Please select a price";
+                    this.message = "Indtast venligst en pris.";
                     return;
                 }
 
                 if(!this.form.image) {
-                    this.message = "Please paste in an image link";
+                    this.message = "Indsæt venligst et billedlink.";
                     return;
                 }
 

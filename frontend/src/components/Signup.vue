@@ -6,7 +6,7 @@
                     <h2 class="ui teal image header">
                         <img src="https://cdn.discordapp.com/attachments/311052549685903361/436267861737209866/inKomplett.png" class="image">
                         <div class="content">
-                            Create your account today!
+                            Opret en konto i dag!
                         </div>
                     </h2>
                     <form class="ui large form">
@@ -17,19 +17,19 @@
                                 </div>
                                 <div class="ui left icon input">
                                     <i class="user icon"></i>
-                                    <input type="text" v-model="form.firstName" placeholder="First Name">
+                                    <input type="text" v-model="form.firstName" placeholder="Fornavn">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="user icon"></i>
-                                    <input type="text" v-model="form.lastName" placeholder="Last Name">
+                                    <input type="text" v-model="form.lastName" placeholder="Efternavn">
                                 </div>
                             </div>
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="envelope outline icon"></i>
-                                    <input type="text" v-model="form.email" placeholder="E-mail address">
+                                    <input type="text" v-model="form.email" placeholder="E-mail adresse">
                                 </div>
                             </div>
                             <div class="field">
@@ -38,8 +38,8 @@
                                     <input type="password" v-model="form.password" placeholder="Password">
                                 </div>
                             </div>
-                            <input type="checkbox" v-model="form.accept" /> <span> Do you accept the <a href="../#/agreements/tos"> terms of sale </a></span>
-                            <button v-on:click.prevent="signUp" class="ui fluid large blue submit button">Sign Up</button>
+                            <input type="checkbox" v-model="form.accept" /> <span> Accepterer du vores <a href="../#/agreements/tos"> Salgsbetingelser </a>?</span>
+                            <button v-on:click.prevent="signUp" class="ui fluid large blue submit button">Registrer</button>
                         </div>
                     </form>
                 </div>

@@ -11,7 +11,7 @@ router.post('/auth', (req, res) => {
     if(req.body.auth.userID == null || req.body.auth.token == null) {
         res.json({
             code: 403,
-            message: "You're not even logged in",
+            message: "Du er ikke engang logget ind",
             authed: false
         });
         return;
@@ -22,7 +22,7 @@ router.post('/auth', (req, res) => {
         if(err) {
             res.json({
                 code: 404,
-                message: "SQL related error",
+                message: "SQL relateret fejl",
                 authed: false
             });
             return;
@@ -33,7 +33,7 @@ router.post('/auth', (req, res) => {
         if(jsonUser[0].isAdmin == 0) {
             res.json({
                 code: 403,
-                message: "Unauthorized",
+                message: "Uautoriseret",
                 authed: false
             });
             return;
@@ -45,7 +45,7 @@ router.post('/auth', (req, res) => {
         if(err) {
             res.json({
                 code: 404,
-                message: "SQL related error",
+                message: "SQL relateret fejl",
                 authed: false
             });
             return;
@@ -57,7 +57,7 @@ router.post('/auth', (req, res) => {
         if(jsonToken[0].token != req.body.auth.token){
             res.json({
                 code: 403,
-                message: "Unauthorized, unknown token",
+                message: "Uautoriseret, ukendt token",
                 authed: false
             });
         }
@@ -65,7 +65,7 @@ router.post('/auth', (req, res) => {
 
     res.json({
         code: 200,
-        message: "Succesful authorization",
+        message: "Autoriseret",
         authed: true
     });
 });
@@ -78,7 +78,7 @@ router.post('/newAdmin', (req, res) => {
         if(err) {
             res.json({
                 code: 404,
-                message: "SQL related error"
+                message: "SQL relateret fejl"
             });
             return;
         }
@@ -89,7 +89,7 @@ router.post('/newAdmin', (req, res) => {
         if(jsonUser[0].isAdmin == 0) {
             res.json({
                 code: 403,
-                message: "Unauthorized"
+                message: "Uautoriseret"
             });
             return;
         }
@@ -100,7 +100,7 @@ router.post('/newAdmin', (req, res) => {
         if(err) {
             res.json({
                 code: 404,
-                message: "SQL related error"
+                message: "SQL relateret fejl"
             });
             return;
         }
@@ -111,7 +111,7 @@ router.post('/newAdmin', (req, res) => {
         if(jsonToken[0].token != req.body.auth.token){
             res.json({
                 code: 403,
-                message: "Unauthorized, unknown token"
+                message: "Uautoriseret, ukendt token"
             });
         }
     });
@@ -130,7 +130,7 @@ router.post('/newAdmin', (req, res) => {
 
     res.json({
         code: 200,
-        message: "User updated successfuly"
+        message: "Bruger opdateret"
     });
 
 });

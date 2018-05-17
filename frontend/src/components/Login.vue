@@ -6,7 +6,7 @@
                 <h2 class="ui teal image header">
                   <img src="https://cdn.discordapp.com/attachments/311052549685903361/436267861737209866/inKomplett.png" class="image">
                   <div class="content">
-                    Log-in to your account
+                    Log ind på din bruger
                   </div>
                 </h2>
                 <form class="ui large form">
@@ -17,7 +17,7 @@
                       </div>
                       <div class="ui left icon input">
                         <i class="envelope outline icon"></i>
-                        <input type="text" v-model="form.email" placeholder="E-mail address">
+                        <input type="text" v-model="form.email" placeholder="E-mail adresse">
                       </div>
                     </div>
                     <div class="field">
@@ -26,12 +26,12 @@
                         <input type="password" v-model="form.password" placeholder="Password">
                       </div>
                     </div>
-                    <button v-on:click.prevent="login" class="ui fluid large blue submit button">Login</button>
+                    <button v-on:click.prevent="login" class="ui fluid large blue submit button">Log ind</button>
                     </div>
                     <div class="ui error message"></div>
                 </form>
               <div class="ui message">
-                <span>New to us? -</span> <a href="./#/signup">Sign Up</a>
+                <span>Førstegangskøber? -</span> <a href="./#/signup">Registrer</a>
               </div>
             </div>
           </div>
