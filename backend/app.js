@@ -23,4 +23,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
 
+app.listen(4000);
+
 module.exports = app;
