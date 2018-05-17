@@ -11,6 +11,7 @@ var sql = require('./comps/sql');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/product');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);
+app.use('/admin', adminRouter);
 
 app.listen(4000);
 

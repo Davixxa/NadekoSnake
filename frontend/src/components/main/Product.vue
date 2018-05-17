@@ -5,7 +5,16 @@
             <div class="twelve wide column">
                     <div class="ui segments">
                         <div class="ui center aligned segment">
+                                <div class="statusError" v-if="message != null">
+                                    <h2> {{ message }} </h2>
+                                </div>
                             <h1>{{ productName }}</h1>
+                            <div v-if="isAdmin">
+                                <small>Product ID: {{id}}</small>
+                                <br>
+                                <small><a v-bind:href="'/#/su/product/editProduct/?id=' + id">Rediger</a> <a v-on:click.prevent="deletThis">Slet</a></small>
+
+                            </div>
                         </div>
                         <div class="ui segment">
                             <div class="ui grid">
@@ -38,7 +47,7 @@
                                     </div>
                                     <div class="eight wide column">
                                         <div class="ui segments">
-                                            <div class="ui center aligned segment">test</div>
+                                            <div class="ui center aligned segment">Spekifikationer</div>
                                             <div class="ui segment"></div>
                                         </div>
                                     </div>
@@ -64,7 +73,9 @@
     Also, since I was *really* little, I could dream when I closed my eyes even though I was not sleeping. The inside of my head was like a video game or manga. Every time I do it, the whose eyes are those eyes monster comes out, so I do not like doing it. I asked Mom and she said not to do it. But while I am writing this essay I asked big me in my dream about the time machine and he said he knew all there was to know. He said he would not tell me anything though because I am just a kid. So from now on I want to do tons of really good things so I can beat whose eyes are those eyes. (The end). \
           ",
           productImg: "https://tlwiki.org/images/a/a6/ChaosHead_bg144_01_1_%E7%94%9F%E5%BE%92%E6%89%8B%E5%B8%B3%E3%81%9D%E3%81%AE%E7%9B%AE_a_new.jpg",
-          productPrice: 1.048596
+          productPrice: 1.048596,
+          isAdmin: false,
+          message: null
         }
     },
         mounted() {
@@ -74,16 +85,57 @@
                 id: this.$route.query.id
             }).then(function(data) {
                 if (!data.body.code == 200) {
-                    this.$router.push('../');
+                    this.$router.push('/#/');
                 }
                 else {
-                    this.id = data.body.id,
+                    this.id = data.body.id;
                     this.productName = data.body.productName;
                     this.productDesc = data.body.productDesc;
                     this.productImg = data.body.productImg;
                     this.productPrice = data.body.productPrice;
+
+
                 }
             });
+            this.$http.post("http://localhost:3000/admin/auth", {
+                auth: {
+                    userID: this.$session.get("userID"),
+                    token: this.$session.get("token"),
+                    isAdmin: this.$session.get("isAdmin")
+                    }
+            }).then(function(data) {
+                //console.log(data)
+                if (data.body.authed) {
+
+                    this.isAdmin = true;
+
+                }
+
+                console.log(this.isAdmin);
+            });
+
+        }, methods: {
+
+            deletThis: function() {
+                
+                this.$http.post('http://localhost:3000/product/delete', {
+
+                    auth: {
+                        token: this.$session.get("token"),
+                        userID: this.$session.get("userID")
+
+                    },
+                    productID: this.id
+
+                }).then(function(data) {
+                    this.message = data.body.message;
+                    if(data.body.status != 200) {
+                        return;
+                    }
+                    window.location('/#/');
+                });
+            }
+
 
         }
     }

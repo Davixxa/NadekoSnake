@@ -7,7 +7,7 @@
                 <h2 class="ui teal image header">
                   <img src="https://cdn.discordapp.com/attachments/311052549685903361/436267861737209866/inKomplett.png" class="image">
                   <div class="content">
-                    Ændre dit navn
+                    Ændre din email
                   </div>
                 </h2>
                 <form class="ui large form">

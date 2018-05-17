@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.json({
     code: 40,
-    message: "This leads nowhere"
+    message: "Her sker der ingenting"
   });
 });
 

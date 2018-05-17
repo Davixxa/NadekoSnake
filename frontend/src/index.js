@@ -18,6 +18,15 @@ import accSettings from './components/account/settings';
 import nameChange from './components/account/edit/nameChange';
 import emailChange from './components/account/edit/emailChange';
 
+//Agreements
+import tos from './components/tos';
+// Superuser components
+
+// Superuser components
+import su from './components/admin/index';
+import createProduct from './components/admin/product/createProduct';
+import editProduct from './components/admin/product/editProduct';
+
 //HowTos
 // Passing parameters through url
   // https://router.vuejs.org/en/essentials/passing-props.html
@@ -34,13 +43,28 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/signup', component: Signup },
 
+  //Agreement paths
+  { path: '/agreements/tos', component: tos },
+
   //Account paths
   { path: '/a', component: accInfo },
   { path: '/a/settings', component: accSettings },
 
   //Account settings paths
   { path: '/a/settings/changeName', component: nameChange },
-  { path: '/a/settings/changeEmail', component: emailChange }];
+  { path: '/a/settings/changeEmail', component: emailChange },
+
+  // Superuser Paths
+  { path: '/su', component: su },
+
+  // Superuser Product Paths
+
+  { path: '/su/product/createProduct', component: createProduct },
+  { path: '/su/product/editProduct', component: editProduct}
+
+
+];
+
 
 const router = new VueRouter({ routes });
 
