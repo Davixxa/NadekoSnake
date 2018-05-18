@@ -94,7 +94,7 @@ router.post('/login', function(req, res) {
   });
 });
 
-router.post('/info', function(req, res) {
+router.post('/auth', function(req, res) {
   var sql = "SELECT * FROM user WHERE id=" + req.body.auth.userID;
   db.conn.query(sql, (err, results, fields) => {
     if(err){
