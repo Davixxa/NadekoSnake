@@ -5,8 +5,8 @@ var router = express.Router();
 
 // Auth admin
 router.post('/auth', (req, res) => {
-    console.log(req);
-    console.log(req.body);
+    //console.log(req);
+    //hhconsole.log(req.body);
 
     if(req.body.auth.userID == null || req.body.auth.token == null) {
         res.json({
