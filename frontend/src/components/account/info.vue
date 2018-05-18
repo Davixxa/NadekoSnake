@@ -81,7 +81,7 @@
                 this.$router.push('../login');
                 return;
             }
-            this.$http.post('http://localhost:3000/users/info', {
+            this.$http.post('http://80.162.194.172:8080/users/info', {
                 auth: {
                     token: this.$session.get('token'),
                     userID: this.$session.get('userID'),

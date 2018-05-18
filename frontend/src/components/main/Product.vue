@@ -80,7 +80,7 @@
     },
         mounted() {
           console.log(this.$route.query.id);
-            this.$http.post('http://localhost:3000/product/info', {
+            this.$http.post('http://80.162.194.172:8080/product/info', {
                 //jsonBody
                 id: this.$route.query.id
             }).then(function(data) {
