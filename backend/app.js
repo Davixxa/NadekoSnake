@@ -25,4 +25,6 @@ app.use('/users', usersRouter);
 app.use('/product', productRouter);
 app.use('/admin', adminRouter);
 
+app.listen(4000);
+
 module.exports = app;

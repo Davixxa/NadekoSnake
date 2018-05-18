@@ -16,7 +16,7 @@
 
                                     <div class="ui left icon input">
                                         <i class="file icon"></i>
-                                        <input type="text" v-model="form.name" placeholder="Navn" />
+                                        <input type="text" v-model="form.name" placeholder="Navn"/>
                                     </div>
                                 </div>
 
@@ -39,7 +39,7 @@
                                         <input type="text" v-model="form.image" placeholder="Billede" />
                                     </div>
                                 </div>
-                            <button v-on:click.prevent="create" class="ui fluid large blue submit button">Opret Produkt</button>
+                            <button v-on:click.prevent="create" class="ui fluid large blue submit button">Rediger Produkt</button>
                             
                           </div>
                       </div>
@@ -84,12 +84,37 @@
 
                 }
             });
+
+            if(this.$route.query.id == null) {
+                this.$router.push("/");
+                return;
+            }
+
+            this.$http.post('http://localhost:3000/product/info', {
+                //jsonBody
+                id: this.$route.query.id
+            }).then(function(data) {
+
+                if (!data.body.code == 200) {
+                    this.$router.push('/#/');
+                }
+
+                else {
+                    this.form.name = data.body.productName;
+                    this.form.description = data.body.productDesc;
+                    this.form.image = data.body.productImg;
+                    this.form.price = data.body.productPrice;
+
+
+                }
+
+            });
                 
         },
         methods: {
             create: function() {
                 if(!this.form.name){
-                    this.message = "Indskriv venligst et navn";
+                    this.message = "Skriv venligst et navn";
                     return;
                 };
 
@@ -99,17 +124,17 @@
                 }
 
                 if(!this.form.price) {
-                    this.message = "Vælg venligst en pris";
+                    this.message = "Indtast venligst en pris.";
                     return;
                 }
 
                 if(!this.form.image) {
-                    this.message = "Indsæt venligst et billedlink";
+                    this.message = "Indsæt venligst et billedlink.";
                     return;
                 }
 
 
-                this.$http.post('http://localhost:3000/product/create', {
+                this.$http.post('http://localhost:3000/product/edit', {
 
                     auth: {
                         token: this.$session.get("token"),
@@ -117,6 +142,7 @@
 
                     },
                     product: {
+                        id: this.$route.query.id,
                         name: this.form.name,
                         description: this.form.description,
                         image: this.form.image,

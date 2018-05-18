@@ -30,19 +30,19 @@ router.post('/signup', function(req, res) {
         if(err){
           res.json({
             status: 404,
-            message: "SQL related error, please contact a system administrator"
+            message: "SQL relateret fejl, kontakt venligst en system administrator"
           });
           return;
         };
         res.json({
           status: 200,
-          message: "Successful registration"
+          message: "Successfuld registrering"
         });
       });
     }else {
       res.json({
         status: 40,
-        message: "email taken"
+        message: "Email-adressen er allerede brugt"
       });
     }
   });
@@ -55,7 +55,7 @@ router.post('/login', function(req, res) {
     if(results.length == 0){    
       res.json({
         status: 403,
-        message: "Something went wrong please check your credentials"
+        message: "Der gik noget galt, check lige dine brugeroplysninger"
       });
       return;
     };
@@ -67,7 +67,7 @@ router.post('/login', function(req, res) {
     if(json[0].password != req.body.password){
       res.json({
         status: 403,
-        message: "Something went wrong please check your credentials"
+        message: "Der gik noget galt, check lige dine brugeroplysninger"
       });
       return;
     }
@@ -89,7 +89,7 @@ router.post('/login', function(req, res) {
       token: token,
       isAdmin: json[0].isAdmin,
       code: 200,
-      message: "Data sent successfuly"
+      message: "Data sendt"
     });
   });
 });
@@ -101,7 +101,7 @@ router.post('/info', function(req, res) {
       res.json({
         authed: false,
         code: 404,
-        message: "SQL related error"
+        message: "SQL relateret fejl"
       });
       return;
     }
@@ -111,7 +111,7 @@ router.post('/info', function(req, res) {
         res.json({
           authed: false,
           code: 404,
-          message: "SQL related error"
+          message: "SQL relateret fejl"
         });
         return;
       }
@@ -121,7 +121,7 @@ router.post('/info', function(req, res) {
       if(json[0].token != req.body.auth.token){
         res.json({
           code: 403,
-          message: "Unauthorized"
+          message: "Uautoriseret"
         });
         return;
       }
@@ -133,7 +133,7 @@ router.post('/info', function(req, res) {
     res.json({
       authed: true,
       code: 200,
-      message: "Successful authorization",
+      message: "Autoriseret",
 
       firstName: json[0].firstName,
       lastName: json[0].lastName,
@@ -150,7 +150,7 @@ router.post('/nameChange', function(req, res) {
     if(err) {
       res.json({
         code: 404,
-        message: "SQL related error, please contact an systemadministrator"
+        message: "SQL relateret fejl, kontakt venligst en systemadministrator"
       });
       return;
     }
@@ -165,7 +165,7 @@ router.post('/nameChange', function(req, res) {
       if(json[0].id != jsonToken[0].userID){
         res.json({
           code: 403,
-          message: "Unauthorized, Access Denied"
+          message: "Uautoriseret, Adgang nægtet"
         });
         return;
       }
@@ -178,7 +178,7 @@ router.post('/nameChange', function(req, res) {
         if(err) {
           res.json({
             code: 404,
-            message: "SQL related error"
+            message: "SQL relateret fejl"
           });
           return;
         }
@@ -191,7 +191,7 @@ router.post('/nameChange', function(req, res) {
         if(err) {
           res.json({
             code: 404,
-            message: "SQL related error"
+            message: "SQL relateret fejl"
           });
           return;
         }
@@ -200,7 +200,7 @@ router.post('/nameChange', function(req, res) {
 
     res.json({
       code: 200,
-      message: "Successful update"
+      message: "Successfuld opdatering"
     });
 
   });
@@ -213,7 +213,7 @@ router.post('/emailChange', function(req, res) {
     if(err) {
       res.json({
         code: 404,
-        message: "SQL related error, please contact an systemadministrator"
+        message: "SQL relateret fejl, kontakt venligst en systemadministrator"
       });
       return;
     }
@@ -228,7 +228,7 @@ router.post('/emailChange', function(req, res) {
       if(json[0].id != jsonToken[0].userID){
         res.json({
           code: 403,
-          message: "Unauthorized, Access Denied"
+          message: "Uautoriseret, Adgang Nægtet"
         });
         return;
       }
@@ -240,14 +240,14 @@ router.post('/emailChange', function(req, res) {
       if(err) {
         res.json({
           code: 404,
-          message: "SQL related error, please contact an system administrator"
+          message: "SQL relateret fejl, kontakt venligst en systemadministrator"
         });
         return;
       }
 
       res.json({
         code: 200,
-        message: "successful update"
+        message: "Successfuld opdatering"
       });
 
     });
