@@ -14,8 +14,26 @@ router.get("/", function(req, res) {
 
 });
 
-router.post('/info', function(req, res) {
+router.get('/getProducts', function(req, res) {
 
+    var sql = "SELECT * FROM product ORDER BY id";
+    db.conn.query(sql, (err, results, fields) => {
+        if(err){
+            res.json({
+                code: 404,
+                message: "SQL relateret fejl"
+            });
+        }
+
+        result = JSON.stringify(results);
+        json = JSON.parse(result);
+        
+        res.json(json);
+    });
+
+});
+
+router.post('/info', function(req, res) {
     if (req.body.id == null || req.body.id == 0) {
         res.json({
             code: 1337,

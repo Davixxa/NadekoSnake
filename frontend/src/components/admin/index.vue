@@ -22,8 +22,7 @@
                 }
             }).then(function(data) {
                 console.log(data);
-                if(data.body.authed != authed){
-                    
+                if(!data.body.authed){
                     this.$router.push('../');
                 }
             });

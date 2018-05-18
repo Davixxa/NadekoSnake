@@ -35,13 +35,6 @@
             <p style="font-size: 100%;">Min side</p>
           </center>
         </a>
-        <a href="./#/kurv" class="item">
-          <center>
-          <i class="shop icon big">
-          </i>
-            <p style="font-size: 100%;">Kurv</p>
-          </center>
-        </a>
       </div>
     </div>
     <router-view>

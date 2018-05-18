@@ -20,10 +20,7 @@ import emailChange from './components/account/edit/emailChange';
 
 //Agreements
 import tos from './components/tos';
-<<<<<<< HEAD
-=======
 // Superuser components
->>>>>>> bbc8e8f60bf72f4b3b57e45fdcfb8119dac3c828
 
 // Superuser components
 import su from './components/admin/index';
