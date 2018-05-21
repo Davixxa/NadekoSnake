@@ -17,7 +17,7 @@ function tokenGen() {
 router.get('/', function(req, res, next) {
   res.json({
     code: 404,
-    message: "this leads nowhere"
+    message: "Det her fører ingen steder"
   });
 });
 
