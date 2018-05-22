@@ -25,10 +25,10 @@
                                     <div class="six wide center aligned column">
                                         <div class="ui segment">
                                             <h1>{{ productPrice }} kr</h1>
-                                            <button class="ui fade animated blue button">
-                                                <div class="visible content">Læg i indkøbsvognen</div>
+                                            <a class="ui fade animated blue button" v-bind:href="'/#/a/order/place/?id=' + id">
+                                                <div class="visible content">Køb</div>
                                                 <div class="hidden content"><i class="shop icon"></i></div>
-                                            </button>
+                                            </a>
                                             <p></p>
                                             <p>Leveringstid: 1-2 dage.</p>
                                         </div>

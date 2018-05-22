@@ -17,6 +17,8 @@ import accInfo from './components/account/info';
 import accSettings from './components/account/settings';
 import nameChange from './components/account/edit/nameChange';
 import emailChange from './components/account/edit/emailChange';
+import placeOrder from './components/account/placeOrder';
+import listOrders from './components/account/listOrders';
 
 //Agreements
 import tos from './components/tos';
@@ -53,6 +55,8 @@ const routes = [
   //Account settings paths
   { path: '/a/settings/changeName', component: nameChange },
   { path: '/a/settings/changeEmail', component: emailChange },
+  { path: '/a/order/place', component: placeOrder},
+  { path: '/a/orders', component: listOrders},
 
   // Superuser Paths
   { path: '/su', component: su },
