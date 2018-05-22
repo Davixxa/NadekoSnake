@@ -88,7 +88,7 @@
                     isAdmin: this.$session.get('isAdmin')
                 }
             }).then(function(data) {
-                if(data.body.authed == true){
+                if(data.body.authed){
                     this.info.firstName = data.body.firstName;
                     this.info.lastName = data.body.lastName;
                 }else{
