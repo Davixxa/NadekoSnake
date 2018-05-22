@@ -69,7 +69,7 @@
                     this.message = "Please accept the terms of sale";
                     return;
                 };
-                this.$http.post('http://localhost:3000/users/signup', {
+                this.$http.post('http://80.162.194.172:8080/users/signup', {
                     firstName: this.form.firstName,
                     lastName: this.form.lastName,
                     email: this.form.email,

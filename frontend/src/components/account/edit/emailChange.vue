@@ -70,7 +70,7 @@
         },
         methods: {
             emailChange: function() {
-                this.$http.post('http://localhost:3000/users/emailChange', {
+                this.$http.post('http://80.162.194.172:8080/users/emailChange', {
                     auth: {
                         userID: this.$session.get('userID'),
                         token: this.$session.get('token'),

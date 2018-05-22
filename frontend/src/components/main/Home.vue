@@ -21,7 +21,7 @@
             }
         },
         mounted() {
-            this.$http.get('http://localhost:3000/product/getProducts').then(function(data) {
+            this.$http.get('http://80.162.194.172:8080/product/getProducts').then(function(data) {
                 this.prodList = data.body;
                 this.prodListLength = data.body.length;
             });
@@ -30,7 +30,7 @@
             
         },
         created() {
-            this.$http.get("http://localhost:3000/users").then(function(response){
+            this.$http.get("http://80.162.194.172:8080/users").then(function(response){
                this.msg = response.body.username;
             });
         }
