@@ -3,11 +3,12 @@
 
 
 
-        <h3>{{ orders }}</h3>
+        <h3>{{ ordersPopulated }}</h3>
         
         <ul class="example">
-            <li v-for="order in orders">
+            <li v-for="order in ordersPopulated">
                 {{ order.productName }} // {{ order.address }}
+                <img v-bind:src="order.productImg">
             </li>
         </ul>
         
@@ -38,34 +39,46 @@
                     showAll: false
                 }).then(function(data) {
                     if(data.body.code != null){
-                        this.$router.push('../login');
+                        console.log("not null");
+                        //this.$router.push('../login');
                     }else{
                         orders = data.body;
                         console.log("orders")
                         console.log(orders)
-                        for(var i = 0, len = orders.length; i <= len; i++) {
+                        console.log("Array")
+                        console.log(orders.array)
+
+                        Object.keys(orders).forEach(key => {
+                            console.log(key)
+                            console.log(orders[key])
+
                             this.$http.post('http://80.162.194.172:8080/product/info', {
                                 //jsonBody
-                                id: orders[i].productID
+                                id: orders[key].productID
                             }).then(function(data) {
                                 if (!data.body.code == 200) {
-                                    return;
+                                    //this.$router.push('/#/');
                                 }
                                 else {
-                                    console.log(orders[i])
-                                    ordersPopulated.push(orders[i]);
-                                    ordersPopulated[i].productName = data.body.productName;
-                                    ordersPopulated[i].productDesc = data.body.productDesc;
-                                    ordersPopulated[i].productImg = data.body.productImg;
-                                    ordersPopulated[i].productPrice = data.body.productPrice;
+                                    //orders[key]
+                                    orders[key].productName = data.body.productName;
+                                    orders[key].productDesc = data.body.productDesc;
+                                    orders[key].productImg = data.body.productImg;
+                                    orders[key].productPrice = data.body.productPrice;
+
+
                                 }
-                                //ordersPopulated.push(orders[i]);
-                            });
-                        }
-                        this.orders = ordersPopulated;
+                            });                                
+
+                            ordersPopulated.push(orders[key]);
+
+                        });
+
                     }
                 });
-
+                console.log("OrdersPopulated")
+                console.log(ordersPopulated);
+                this.ordersPopulated = ordersPopulated;
             }
     }
 </script>
