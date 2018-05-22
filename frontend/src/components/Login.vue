@@ -57,7 +57,7 @@
     },
     methods: {
       login: function() {
-        this.$http.post('http://localhost:3000/users/login',{
+        this.$http.post('http://80.162.194.172:8080/users/login',{
           email: this.form.email,
           password: this.form.password
         }).then(function(data){
