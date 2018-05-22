@@ -97,7 +97,7 @@
 
                 }
             });
-            this.$http.post("http://localhost:3000/admin/auth", {
+            this.$http.post("http://80.162.194.172:8080/admin/auth", {
                 auth: {
                     userID: this.$session.get("userID"),
                     token: this.$session.get("token"),
@@ -118,7 +118,7 @@
 
             deletThis: function() {
                 
-                this.$http.post('http://localhost:3000/product/delete', {
+                this.$http.post('http://80.162.194.172:8080/product/delete', {
 
                     auth: {
                         token: this.$session.get("token"),

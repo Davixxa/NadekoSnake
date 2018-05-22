@@ -68,7 +68,7 @@
         },
         mounted() {
 
-            this.$http.post("http://localhost:3000/admin/auth", {
+            this.$http.post("http://80.162.194.172:8080/admin/auth", {
 
                 auth: {
                     userID: this.$session.get("userID"),
@@ -90,7 +90,7 @@
                 return;
             }
 
-            this.$http.post('http://localhost:3000/product/info', {
+            this.$http.post('http://80.162.194.172:8080/product/info', {
                 //jsonBody
                 id: this.$route.query.id
             }).then(function(data) {
@@ -134,7 +134,7 @@
                 }
 
 
-                this.$http.post('http://localhost:3000/product/edit', {
+                this.$http.post('http://80.162.194.172:8080/product/edit', {
 
                     auth: {
                         token: this.$session.get("token"),
