@@ -75,7 +75,7 @@
         },
         methods: {
             nameChange: function() {
-                this.$http.post('http://localhost:3000/users/nameChange', {
+                this.$http.post('http://80.162.194.172:8080/users/nameChange', {
                     auth: {
                         userID: this.$session.get('userID'),
                         token: this.$session.get('token'),
