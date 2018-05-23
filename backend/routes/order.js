@@ -92,7 +92,7 @@ router.post('/getOrders', function(req, res) {
         
                 result = JSON.stringify(results);
                 json = JSON.parse(result);
-                
+                console.log(json);
                 res.json(json);
             });
         });
