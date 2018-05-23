@@ -2,9 +2,11 @@
     <div id="server">
         <div class="ui grid">
             <div class="ui four wide column" v-for="item in prodList" :key="item">
-                <h3>{{ item.productName }}</h3>
-                <img width="300px" :src="item.productImg" />
-                <a class="ui fluid large blue submit button" :href="'/#/product?id=' + item.id"> Læs mere eller køb </a>
+                <center>
+                    <h3>{{ item.productName }}</h3>
+                    <img width="300px" :src="item.productImg" />
+                    <a class="ui fluid large blue submit button" :href="'/#/product?id=' + item.id"> Kun {{ item.productPrice }} </a>
+                </center>
             </div>
         </div>
     </div>

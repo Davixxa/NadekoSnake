@@ -21,7 +21,7 @@
             <p style="font-size: 100%;">Log ud</p>
           </center>
         </a>
-        <a v-if="this.$session.get('isAdmin') == 1" href="./#/su" class="item">
+        <a v-if="this.$session.get('isAdmin') == 1" href="./#/su/product/createProduct" class="item">
           <center>
           <i class="lock icon big">
           </i>
