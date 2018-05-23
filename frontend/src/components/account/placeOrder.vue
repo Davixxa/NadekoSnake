@@ -88,7 +88,7 @@
                     return;
                 }
 
-                this.$http.post('http://80.162.194.172:8080/order/create', {
+                this.$http.post('http://localhost:3000/order/create', {
 
                     auth: {
                         token: this.$session.get("token"),

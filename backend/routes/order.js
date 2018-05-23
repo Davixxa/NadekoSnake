@@ -164,21 +164,35 @@ router.post('/create', function(req, res) {
                 return;
             }
 
-            var sql = "INSERT INTO orderline (userID, productID, address, postal, city) VALUES ('" + req.body.auth.userID + "', '" + req.body.productID + "', '" + req.body.address + "', " + req.body.postal + ", '" + req.body.city + "')";
-            //"', '" + 
-            db.conn.query(sql, function(err, result, fields) {
-                if (err) {
+            var sql = "SELECT * FROM product WHERE id=" + req.body.productID;
+            db.conn.query(sql, (err, resultProd, fieldsProd) => {
+                if(err) {
                     res.json({
-                        status: 404,
-                        message: "SQL relateret fejl, kontakt en systemadministrator"
-                      });
-                      return;   
+                        message: "SQL relateret fejl",
+                        code: 404
+                    });
                 }
-                res.json({ // lav dummy besked indtil videre.
-                    code: 200,
-                    message: "Ordre placeret"
-                });
 
+                fuckProd = JSON.stringify(resultProd);
+                jsonProd = JSON.parse(fuckProd);
+                console.log(jsonProd[0].productName);
+                var sql = "INSERT INTO orderline (userID, productID, productName, productImg, address, postal, city) VALUES ('" + req.body.auth.userID + "', '" + req.body.productID + "', '" + jsonProd[0].productName  + "', '" + jsonProd[0].productImg + "', '" + req.body.address + "', " + req.body.postal + ", '" + req.body.city + "')";
+                //"', '" + 
+                db.conn.query(sql, function(err, result, fields) {
+                    if (err) {
+                        console.log(err);
+                        res.json({
+                            status: 404,
+                            message: "SQL error"
+                          });
+                          return;   
+                 }
+                 console.log("2 - " + jsonProd)
+                    res.json({ // lav dummy besked indtil videre.
+                        code: 200,
+                        message: "Ordre placeret"
+                    });
+                });
             });
 
         });
