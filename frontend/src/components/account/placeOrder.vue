@@ -62,7 +62,7 @@
         mounted() {
 
             if(this.$session.get('token') == null){
-                this.$router.push('../login');
+                this.$router.push('/login');
                 return;
             }
         
